@@ -3,13 +3,15 @@
 
 This project provides dynamic profiling, threat prevention and monitoring for PHP programs using eBPF technology. With this tool you can create your own secure PHP environment.
 
-**Note 1**: if you want to use the _sandbox_ and _monitor_ modes, the _profile_ mode must be run first.
+**Note 1**: If you want to use the _sandbox_ and _monitor_ modes, the _profile_ mode must be run first.
 
 ```
 ./[eBPF Program] --profile
 ```
 
-**Note 2**: USDT probes are attached to _/root/Tools/php/bin/php_. Before compilation, you may want to change that.
+**Note 2**: eBPF program is attachted to USDT probes on _/root/Tools/php/bin/php_. Before compilation, you may want to change that.
+
+**Note 3**: To make USDT probes available, you need to define the "USE_ZEND_DTRACE=1" environmental variable.
 
 I completed this project in 3 phases.
 
