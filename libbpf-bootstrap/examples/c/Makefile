@@ -24,7 +24,7 @@ INCLUDES := -I$(OUTPUT) -I../../libbpf/include/uapi -I$(dir $(VMLINUX)) -I$(LIBB
 CFLAGS := -g -Wall
 ALL_LDFLAGS := $(LDFLAGS) $(EXTRA_LDFLAGS)
 
-APPS = lsm_syscall
+APPS = lsm_syscall user_mode_kill kernel_mode_kill
 
 CARGO ?= $(shell which cargo)
 ifeq ($(strip $(CARGO)),)
