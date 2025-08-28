@@ -19,7 +19,7 @@ The program has 3 modes.
 
 **Note 3**: To make USDT probes available, you need to define the "_USE_ZEND_DTRACE=1_" environmental variable.
 
-**Note 4**: There is a subtle difference between LSM hooks and tracepoints. With LSM hooks, not every syscall might be captured because they often perform parameter validation before triggering. For example, imagine you try to delete a file named "a", but it doesn't exist. In this scenario, tracepoints will capture your syscall attempt. This is because tracepoints are designed to fire at the entry or exit of a syscall, regardless of the parameters. An LSM hook, on the other hand, might only be triggered after the kernel has performed initial validations, such as checking if the file actually exists. Therefore, while you will always capture the "unlink" attempt with tracepoints, you may not capture the same "unlink" call with an LSM hook if the file does not exist.
+**Note 4**: There is a subtle difference between LSM hooks and tracepoints. With LSM hooks, not every syscall might be captured because they often perform parameter validation before triggering. For example, imagine you try to delete a file named "a", but it doesn't exist. In this scenario, tracepoints will capture your syscall attempt. This is because tracepoints are designed to fire at the entry or exit of a syscall, regardless of the parameters. An LSM hook, on the other hand, might only be triggered after the kernel has performed initial validations, such as checking if the file actually exists. Therefore, while you will always capture the _unlink_ attempt with tracepoints, you may not capture the same _unlink_ call with an LSM hook if the file does not exist.
 
 I completed this project in 3 phases.
 
@@ -41,7 +41,7 @@ cd libbpf-bootstrap/examples/c/
 make kernel_mode_kill
 ```
 
-### 3. LSM syscall
+### 3. LSM Syscall
 
 Two different approaches were used in this step. Before compiling, the LSM enabled section in the _lsm_syscall.h_ header allows you to select which approach to use. The first approach leverages the tracepoints used in previous steps. When an unauthorized function or syscall is encountered, not only does the kernel-space program send a kill signal, but the syscall's parameters are also modified using the bpf_probe_write_user function within eBPF. This solves the problem of executing the first syscall encountered. The other approach uses LSM hooks instead of tracepoints. Because the return values ​​of LSM hooks affect syscalls, unauthorized access can be prevented with -EPERM. 
 
