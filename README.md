@@ -19,6 +19,8 @@ The program has 3 modes.
 
 **Note 3**: To make USDT probes available, you need to define the "_USE_ZEND_DTRACE=1_" environmental variable.
 
+**Note 4**: There is a subtle difference between LSM hooks and tracepoints. With LSM hooks, not every syscall might be captured because they often perform parameter validation before triggering. For example, imagine you try to delete a file named "a", but it doesn't exist. In this scenario, tracepoints will capture your syscall attempt. This is because tracepoints are designed to fire at the entry or exit of a syscall, regardless of the parameters. An LSM hook, on the other hand, might only be triggered after the kernel has performed initial validations, such as checking if the file actually exists. Therefore, while you will always capture the "unlink" attempt with tracepoints, you may not capture the same "unlink" call with an LSM hook if the file does not exist.
+
 I completed this project in 3 phases.
 
 ### 1. User-mode Kill
