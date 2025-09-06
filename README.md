@@ -1,5 +1,5 @@
 
-# Jotform eBPF
+# eBPF PHP Tracer
 
 This project provides dynamic profiling, threat prevention and monitoring for PHP programs using eBPF technology. With this tool you can create your own secure PHP environment.
 
