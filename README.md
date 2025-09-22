@@ -9,6 +9,13 @@ The program has 3 modes.
 - ``` sandbox ```: It monitors the function and syscalls made by the program in real-time. It then compares this activity against a predefined profile to **block** any unauthorized actions.
 - ``` monitor ```: It monitors the function and syscalls made by the program in real-time. It then compares this activity against a predefined profile to **log** and **count** any unauthorized actions.
 
+### Project Demo
+
+
+https://github.com/user-attachments/assets/8366235f-8672-4762-94a5-413b4fa40e51
+
+
+
 **Note 1**: If you want to use the _sandbox_ and _monitor_ modes, the _profile_ mode must be run first.
 
 ```
@@ -52,4 +59,5 @@ Additionally, the quality of the content printed on the screen is also increased
 ```
 cd libbpf-bootstrap/examples/c/
 make lsm_syscall
+
 ```
